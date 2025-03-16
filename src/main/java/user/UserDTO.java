@@ -93,16 +93,14 @@ public class UserDTO {
   }
 
   public UserDTO() {
-    
+
   }
 
-  public UserDTO(String userId, String userPassword, String userEmail, String userEmailHash,
-      boolean userEmailChecked) {
+  public UserDTO(String userId, String userPassword, String userEmail, String userEmailHash) {
     this.userId = userId;
     this.userPassword = userPassword;
     this.userEmail = userEmail;
     this.userEmailHash = userEmailHash;
-    this.userEmailChecked = userEmailChecked;
   }
 
 

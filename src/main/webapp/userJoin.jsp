@@ -9,7 +9,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="jsp/index.jsp">강의평가 웹 사이트</a>
+      <a class="navbar-brand" href="index.jsp">강의평가 웹 사이트</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -44,10 +44,6 @@
         <div class="form-group">
           <label>비밀번호</label>
           <input type="password" name="userPassword" class="form-control" />
-        </div>
-        <div class="form-group">
-          <label>비밀번호확인</label>
-          <input type="password" name="userPassword2" class="form-control" />
         </div>
         <div class="form-group">
           <label>이메일</label>

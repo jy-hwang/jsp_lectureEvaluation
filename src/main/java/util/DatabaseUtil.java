@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 public class DatabaseUtil {
- 
+
   public static Connection getConnection() {
     try {
       String dbUrl = System.getProperty("db.url");
@@ -17,7 +17,7 @@ public class DatabaseUtil {
     } catch (Exception e) {
       e.getStackTrace();
     }
-    
+
     return null;
   }
 
