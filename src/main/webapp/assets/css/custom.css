@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: NanumGothic;
+    src: url("../fonts/NanumGothic-Regular.ttf") format("opentype");
+}
+
+@font-face {
+    font-family: JejuGothic;
+    src: url("../fonts/JejuGothic.ttf") format("opentype");
+}
+
+.navbar-brand,
+h1,
+h2,
+h3,
+h4 {
+    font-family: JejuGothic;
+}
+
+h5 {
+    font-family: JejuGothic;
+    font-size: 18px;
+}
+
+body{
+    font-family: NanumGothic;    
+}
