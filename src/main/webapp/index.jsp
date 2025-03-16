@@ -16,14 +16,14 @@
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="index.jsp">메인</a>
+            <a class="nav-link active" href="index.jsp">메인</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="dropdown" data-toggle="dropdown">회원관리</a>
             <div class="dropdown-menu" aria-labelledby="dropdown">
-              <a class="dropdown-item" href="#">로그인</a>
-              <a class="dropdown-item" href="#">회원가입</a>
-              <a class="dropdown-item" href="#">로그아웃</a>
+              <a class="dropdown-item" href="userLogin.jsp">로그인</a>
+              <a class="dropdown-item" href="userJoin.jsp">회원가입</a>
+              <a class="dropdown-item" href="userLogout.jsp">로그아웃</a>
             </div>
           </li>
         </ul>
@@ -121,6 +121,25 @@
               널널<span style="color: red">C</span>
               강의<span style="color: red">A</span>
               <span style="color: green">(추천: 5)</span>
+            </div>
+            <div class="col-3 text-right">
+              <a onclick="return confirm('추천하시겠습니까?')" href="./likeAction.jsp?evaluationNo=">추천</a>
+              <span>|</span>
+              <a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?evaluationNo=">삭제</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body bg-light">
+          <h5 class="card-title">전달력이 가장 좋은 강의입니다. &nbsp;<small>(2024년 겨울학기)</small></h5>
+          <p class="card-text"
+            >전달력이 정말 좋으십니다.</p
+          >
+          <div class="row">
+            <div class="col-9 text-left">
+              성적<span style="color: red">B</span>
+              널널<span style="color: red">C</span>
+              강의<span style="color: red">A</span>
+              <span style="color: green">(추천: 3)</span>
             </div>
             <div class="col-3 text-right">
               <a onclick="return confirm('추천하시겠습니까?')" href="./likeAction.jsp?evaluationNo=">추천</a>
