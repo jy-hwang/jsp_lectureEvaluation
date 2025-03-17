@@ -3,6 +3,7 @@
 <%@ page import="javax.mail.internet.InternetAddress"%>
 <%@ page import="javax.mail.internet.MimeMessage"%>
 <%@ page import="javax.mail.*"%>
+<%@ page import="java.lang.System"%>
 <%@ page import="java.util.Properties"%>
 <%@ page import="user.UserDAO"%>
 <%@ page import="util.SHA256"%>
@@ -39,12 +40,12 @@ if (emailChecked == true) {
   return;
 }
 
-String host = "http://localhost:9192/LectureEvaluation/";
+String host = "http://localhost:8080/LectureEvaluation/";
 String from = System.getProperty("smtp.username");
 String to = userDAO.getUserEmail(userId);
 String subject = "강의 평가를 위한 이메일 인증 메일입니다.";
-String content = " 다음 링크에 접속하여 이메일 인증을 진행하세요.<br>'" + "<a href='" + host
-    + "emailCheckAction.jsp?code=" + new SHA256().getSHA256(to) + "'>이메일인증하기</a> ";
+String content = " 다음 링크에 접속하여 이메일 인증을 진행하세요.<br>" + "<a href='" + host
+    + "emailCheckAction.jsp?code=" + SHA256.getSHA256(to) + "'>이메일인증하기</a> ";
 
 Properties p = new Properties();
 p.put("mail.smtp.user", from);
@@ -93,44 +94,41 @@ try {
     <title>강의평가 웹 사이트</title>
   </head>
   <body>
-    <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="index.jsp">강의평가 웹 사이트</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link active" href="index.jsp">메인</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="dropdown" data-toggle="dropdown">회원관리</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="index.jsp">강의평가 웹 사이트</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.jsp">메인</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dropdown" data-toggle="dropdown">회원관리</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown">
 <%
 if (userId == null) {
 %>
-                <a class="dropdown-item" href="userLogin.jsp">로그인</a>
-                <a class="dropdown-item" href="userJoin.jsp">회원가입</a>
+              <a class="dropdown-item" href="userLogin.jsp">로그인</a>
+              <a class="dropdown-item" href="userJoin.jsp">회원가입</a>
 
 <%
 } else {
 %>
-               <a class="dropdown-item" href="userLogout.jsp">로그아웃</a>
+              <a class="dropdown-item" href="userLogout.jsp">로그아웃</a>
 <%
 }
 %>
-              </div>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="내용을 입력하세요" aria-label="Search" />
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
-          </form>
-        </div>
-      </nav>
-    </div>
-
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="내용을 입력하세요" aria-label="Search" />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
+        </form>
+      </div>
+    </nav>
     
     <section class="container mt-3" style="max-width: 560px">
       <div class="alert alert-success mt-4" role="alert">

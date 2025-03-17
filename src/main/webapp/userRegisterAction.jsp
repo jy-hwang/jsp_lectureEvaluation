@@ -78,21 +78,3 @@ if (result == -1) {
   script.close();
 }
 %>
-
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/css/custom.css" />
-    <link rel="stylesheet" href="assets/css/sweetalert2.min.css" />
-    <title>강의평가 웹 사이트</title>
-  </head>
-  <body>
-    <script src="assets/js/jquery-3.7.1.slim.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/sweetalert2.all.min.js"></script>
-  </body>
-</html>
-
