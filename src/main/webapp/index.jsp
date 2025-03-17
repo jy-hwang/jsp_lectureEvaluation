@@ -207,11 +207,11 @@ if (userId == null) {
               <div class="form-row">
                 <div class="form-group col-sm-6">
                   <label>강의명</label>
-                  <input type="text" name="lectureName" class="form-control" maxlength="20" />
+                  <input type="text" name="lectureName" class="form-control" maxlength="20" required="required" />
                 </div>
                 <div class="form-group col-sm-6">
                   <label>교수명</label>
-                  <input type="text" name="professorName" class="form-control" maxlength="20" />
+                  <input type="text" name="professorName" class="form-control" maxlength="20" required="required" />
                 </div>
               </div>
               <div class="form-row">
@@ -231,7 +231,7 @@ if (userId == null) {
                 <div class="form-group col-sm-4">
                   <label>수강학기</label>
                   <select name="semesterDivide" class="form-control">
-                    <option value="spring">1학기</option>
+                    <option value="spring" selected>1학기</option>
                     <option value="summer">여름학기</option>
                     <option value="autumn">2학기</option>
                     <option value="winter">겨울학기</option>
@@ -248,7 +248,7 @@ if (userId == null) {
               </div>
               <div class="form-group">
                 <label>제목</label>
-                <input type="text" name="evaluationTitle" class="form-control" maxlength="30" />
+                <input type="text" name="evaluationTitle" class="form-control" maxlength="30" required="required"/>
               </div>
               <div class="form-group">
                 <label>내용</label>
@@ -257,6 +257,7 @@ if (userId == null) {
                   class="form-control"
                   maxlength="2048"
                   style="height: 180px"
+                  required="required"
                 ></textarea>
               </div>
               <div class="form-row">
@@ -324,11 +325,11 @@ if (userId == null) {
             <form action="./reportAction.jsp" method="post">
               <div class="form-group">
                 <label>제목</label>
-                <input type="text" name="reportTitle" class="form-control" maxlength="30" />
+                <input type="text" name="reportTitle" class="form-control" maxlength="30" required/>
               </div>
               <div class="form-group">
                 <label>내용</label>
-                <textarea name="reportContent" class="form-control" maxlength="2048" style="height: 180px"></textarea>
+                <textarea name="reportContent" class="form-control" maxlength="2048" style="height: 180px" required></textarea>
               </div>
               <div class="modal-footer">
                 <button type="submit" class="btn btn-danger">신고하기</button>
