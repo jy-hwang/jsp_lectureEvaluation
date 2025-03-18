@@ -56,8 +56,8 @@ if (userId == null) {
             </div>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="내용을 입력하세요" aria-label="Search" />
+        <form method="get" action="./index.jsp" class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" name="search" placeholder="내용을 입력하세요" aria-label="Search" />
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
         </form>
       </div>
@@ -68,11 +68,11 @@ if (userId == null) {
       <form method="post" action="./userLoginAction.jsp">
         <div class="form-group">
           <label>아이디</label>
-          <input type="text" name="userId" class="form-control" />
+          <input type="text" name="userId" class="form-control" required/>
         </div>
         <div class="form-group">
           <label>비밀번호</label>
-          <input type="password" name="userPassword" class="form-control" />
+          <input type="password" name="userPassword" class="form-control" required/>
         </div>
         <button type="submit" class="btn btn-primary">로그인</button>
       </form>

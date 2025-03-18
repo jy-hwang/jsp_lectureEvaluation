@@ -4,7 +4,6 @@ CREATE TABLE `users` (
   `user_no` bigint(20) NOT NULL AUTO_INCREMENT,
   `user_id` varchar(20) NOT NULL,
   `user_password` varchar(64) NOT NULL,
-  `user_name` varchar(100) NOT NULL,
   `user_email` varchar(50) NOT NULL,
   `user_email_hash` varchar(64) NOT NULL,
   `user_email_checked` tinyint(1) NOT NULL,
@@ -17,7 +16,7 @@ DROP TABLE IF EXISTS evaluations;
 
 CREATE TABLE `evaluations` (
 `evaluation_no` bigint(20) NOT NULL AUTO_INCREMENT,
-`user_no` bigint(20) NOT NULL,
+`user_id` varchar(20) NOT NULL,
 `lecture_name` varchar(50) NOT NULL,  
 `professor_name` varchar(20) NOT NULL,
 `lecture_year` mediumint NOT NULL,
@@ -29,9 +28,9 @@ CREATE TABLE `evaluations` (
 `credit_score` varchar(5) NOT NULL,
 `comfortable_score` varchar(5) NOT NULL,
 `lecture_score` varchar(5) NOT NULL,
-`like_count` mediumint NOT NULL,
+`like_count` mediumint default 0,
 `created_date` timestamp NOT NULL DEFAULT current_timestamp(),
-`updated_date` timestamp NULL DEFAULT NULL,
+`updated_date` timestamp NULL,
   PRIMARY KEY (`evaluation_no`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

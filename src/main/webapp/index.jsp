@@ -64,8 +64,8 @@ if (userId == null) {
             </div>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="내용을 입력하세요" aria-label="Search" />
+        <form method="get" action="./index.jsp" class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" name="search" placeholder="내용을 입력하세요" aria-label="Search" />
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
         </form>
       </div>
@@ -93,7 +93,8 @@ if (userId == null) {
           </div>
         </div>
         <div class="card-body bg-light">
-          <h5 class="card-title">정말 좋은 강의에요. &nbsp;<small>(2024년 2학기)</small></h5>
+          <div class="card-title">정말 좋은 강의에요. &nbsp;<small>(2024년 2학기)</small></div>
+          <div class="card-sub-title text-right"><small class="text-right">2025-03-17 12:30:00</small></div>
           <p class="card-text"
             >강의가 많이 널널해서, 솔직히 많이 배운 건 없는 것 같지만, 학점도 잘 나오고, 너무 좋은 것 같습니다.</p
           >
