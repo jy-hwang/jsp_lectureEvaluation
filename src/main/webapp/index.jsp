@@ -12,6 +12,7 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/custom.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap-icons.css" />
     <title>강의평가 웹 사이트</title>
   </head>
   <body>
@@ -128,7 +129,8 @@ if(evaluationList != null){
       <div class="card bg-light mt-3">
         <div class="card-header bg-light">
           <div class="row">
-            <div class="col-8 text-left">
+            <div class="row col-8 text-left">
+            <div class="col-1">
 <span class="badge badge-primary">
 <%
 switch (evaluation.getLectureDivide()){
@@ -145,8 +147,14 @@ switch (evaluation.getLectureDivide()){
     break;
 }
 %>
-</span><%= evaluation.getLectureName() %>&nbsp;<small><%= evaluation.getProfessorName() %></small></div>
-            <div class="col-4 text-right">종합<span style="color: red"><%= evaluation.getTotalScore() %></span></div>
+</span>
+</div>
+<div class="col-8">
+<span><%= evaluation.getLectureName() %>&nbsp;</span>
+</div>
+<div class="col-3">
+<small><%= evaluation.getProfessorName() %></small></div></div>
+            <div class="col-4 text-right">종합<span style="color: red"> <%= evaluation.getTotalScore() %> </span></div>
           </div>
         </div>
         <div class="card-body bg-light">
@@ -180,16 +188,35 @@ switch (evaluation.getSemesterDivide()){
             ><%= evaluation.getEvaluationContent() %></p
           >
           <div class="row">
-            <div class="col-9 text-left">
-              성적<span style="color: red"><%= evaluation.getCreditScore() %></span>
-              널널<span style="color: red"><%= evaluation.getComfortableScore() %></span>
-              강의<span style="color: red"><%= evaluation.getLectureScore() %></span>
-              <span style="color: green">(추천: <%= evaluation.getLikeCount() %>)</span>
+            <div class="col-10 text-left">
+              성적<span style="color: red"> <%= evaluation.getCreditScore() %> </span>
+              널널<span style="color: red"> <%= evaluation.getComfortableScore() %> </span>
+              강의<span style="color: red"> <%= evaluation.getLectureScore() %> </span>
+              
             </div>
-            <div class="col-3 text-right">
-              <a onclick="return confirm('추천하시겠습니까?')" href="./likeAction.jsp?evaluationNo=">추천</a>
-              <span>|</span>
-              <a onclick="return confirm('삭제하시겠습니까?')" href="./deleteAction.jsp?evaluationNo=">삭제</a>
+            <div class="col-2">
+              <div class="row justify-content-center">
+<%
+if(userId != null && !userId.equals(evaluation.getUserId())){
+%>
+                <div class="btn btn-light">
+                  <a href="./likeAction.jsp?evaluationNo=<%= evaluation.getEvaluationNo() %>"><i class="bi bi-hand-thumbs-up"></i></a>
+                  <span style="color: green">(추천 : <%= evaluation.getLikeCount() %>)</span>
+                </div>
+<%
+} else if(userId != null && userId.equals(evaluation.getUserId())){
+%>
+                <button class="btn btn-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="bi bi-three-dots-vertical"></i>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <!-- <a class="dropdown-item" href="#">수정</a> -->
+                  <a class="dropdown-item" href="./deleteAction.jsp?evaluationNo=<%= evaluation.getEvaluationNo() %>">삭제</a>
+                </div>
+<%
+}
+%>
+              </div>
             </div>
           </div>
         </div>
@@ -395,6 +422,10 @@ if(evaluationList.size() < 6){
     </div>
 
     <script src="assets/js/jquery-3.7.1.slim.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- <script src="assets/js/bootstrap.min.js"></script> -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script>
+    
+    </script>
   </body>
 </html>

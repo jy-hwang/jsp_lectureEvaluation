@@ -65,13 +65,13 @@ public class EvaluationDAO {
 
     try {
       if(searchType.equals("LATEST")) {
-        query = " SELECT user_id AS userId, lecture_name AS lectureName, professor_name AS professorName, lecture_year AS lectureYear, semester_divide AS semesterDivide "
+        query = " SELECT evaluation_no AS evaluationNo, user_id AS userId, lecture_name AS lectureName, professor_name AS professorName, lecture_year AS lectureYear, semester_divide AS semesterDivide "
             + " , lecture_divide AS lectureDivide, evaluation_title AS evaluationTitle, evaluation_content AS evaluationContent, total_score AS totalScore, credit_score AS creditScore "
             + " , comfortable_score AS comfortableScore, lecture_score AS lectureScore, like_count AS likeCount, created_date AS createdDate, updated_date AS updatedDate FROM evaluations "
             + " WHERE lecture_divide LIKE ? AND CONCAT(lecture_name, professor_name, evaluation_title, evaluation_content) LIKE ? "
             + " ORDER BY evaluation_no DESC LIMIT " + pageNumber * 5 + " , " + pageNumber * 5 + 6 + ";";  
       } else if(searchType.equals("RECOMMEND")){
-        query = " SELECT user_id AS userId, lecture_name AS lectureName, professor_name AS professorName, lecture_year AS lectureYear, semester_divide AS semesterDivide "
+        query = " SELECT evaluation_no AS evaluationNo, user_id AS userId, lecture_name AS lectureName, professor_name AS professorName, lecture_year AS lectureYear, semester_divide AS semesterDivide "
             + " , lecture_divide AS lectureDivide, evaluation_title AS evaluationTitle, evaluation_content AS evaluationContent, total_score AS totalScore, credit_score AS creditScore "
             + " , comfortable_score AS comfortableScore, lecture_score AS lectureScore, like_count AS likeCount, created_date AS createdDate, updated_date AS updatedDate FROM evaluations "
             + " WHERE lecture_divide LIKE ? AND CONCAT(lecture_name, professor_name, evaluation_title, evaluation_content) LIKE ? "
@@ -85,6 +85,7 @@ public class EvaluationDAO {
       evaluationList = new ArrayList<EvaluationDTO>();
       while (rSet.next()) {
         EvaluationDTO evaluation = new EvaluationDTO();
+        evaluation.setEvaluationNo(rSet.getInt("evaluationNo"));
         evaluation.setUserId(rSet.getString("userId"));
         evaluation.setLectureName(rSet.getString("lectureName"));
         evaluation.setProfessorName(rSet.getString("professorName"));
@@ -121,6 +122,108 @@ public class EvaluationDAO {
       }
     }
     return evaluationList;
+  }
+  
+  public int like(int evaluationNo){
+    String query = " UPDATE evaluations SET like_count = like_count + 1 WHERE evaluation_no = ? ";
+    Connection conn = null;
+    PreparedStatement pStmt = null;
+    ResultSet rSet = null;
+
+    try {
+      conn = DatabaseUtil.getConnection();
+      pStmt = conn.prepareStatement(query);
+      pStmt.setInt(1, evaluationNo);
+      return pStmt.executeUpdate();
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (rSet != null) {
+          rSet.close();
+        }
+        if (pStmt != null) {
+          pStmt.close();
+        }
+        if (conn != null) {
+          conn.close();
+        }
+      } catch (Exception e2) {
+        e2.printStackTrace();
+      }
+    }
+    return -1;// DB 오류
+  }
+    
+  public int delete(int evaluationNo){
+    String query = " DELETE FROM evaluations WHERE evaluation_no = ? ";
+    Connection conn = null;
+    PreparedStatement pStmt = null;
+    ResultSet rSet = null;
+    
+    try {
+      conn = DatabaseUtil.getConnection();
+      pStmt = conn.prepareStatement(query);
+      pStmt.setInt(1, evaluationNo);
+      return pStmt.executeUpdate();
+      
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (rSet != null) {
+          rSet.close();
+        }
+        if (pStmt != null) {
+          pStmt.close();
+        }
+        if (conn != null) {
+          conn.close();
+        }
+      } catch (Exception e2) {
+        e2.printStackTrace();
+      }
+    }
+    return -1;// DB 오류
+  }
+  
+  public String getUserId(int evaluationNo){
+    
+    String query = " SELECT user_id AS userId FROM evaluations WHERE evaluation_no = ? ";
+    Connection conn = null;
+    PreparedStatement pStmt = null;
+    ResultSet rSet = null;
+
+    try {
+      conn = DatabaseUtil.getConnection();
+      pStmt = conn.prepareStatement(query);
+      pStmt.setInt(1, evaluationNo);
+      rSet = pStmt.executeQuery();
+
+      if (rSet.next()) {
+        return rSet.getString(1);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (rSet != null) {
+          rSet.close();
+        }
+        if (pStmt != null) {
+          pStmt.close();
+        }
+        if (conn != null) {
+          conn.close();
+        }
+      } catch (Exception e2) {
+        e2.printStackTrace();
+      }
+    }
+    return null;// 존재하지 않음.
+    
     
   }
+  
 }
